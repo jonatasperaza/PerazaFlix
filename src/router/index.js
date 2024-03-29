@@ -38,6 +38,12 @@ const router = createRouter({
       path: '/favoritos',
       name: 'favorites',
       component: () => import('../views/UserListView.vue')
+    },
+    {
+      path: '/filme/:id',
+      name: 'Filme',
+      component: () => import('@/views/FilmeView.vue'),
+      props: true
     }
   ]
 })

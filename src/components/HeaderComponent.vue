@@ -49,4 +49,18 @@ nav ul li {
 header > div > a > img {
   border-radius: 50%;
 }
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+  }
+  nav ul {
+    flex-direction: column;
+  }
+  nav ul li {
+    margin: 0.5rem;
+  }
+  .logo {
+    margin-bottom: 1rem;
+  }
+}
 </style>
