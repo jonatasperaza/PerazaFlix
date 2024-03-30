@@ -1,30 +1,23 @@
 <template>
   <HeaderComponent />
   <div class="movie-details-container" v-if="ver">
-    <img :src="`${movie.images.jpg.large_image_url}`" alt="Backdrop" class="backdrop" />
     <div class="movie-details">
       <h1>{{ movie.title }}</h1>
-      <img :src="`${movie.images.jpg.image_url}`" alt="Poster" class="poster" />
+      <img :src="`${movie.image}`" alt="Poster" class="poster" />
       <p>{{ movie.synopsis }}</p>
       <div class="additional-details">
-        <span
-          >Gêneros: <strong>{{ genres }}</strong></span
-        >
-        <span
-          >Duração: <strong>{{ movie.duration }}</strong></span
-        >
-        <span
-          >Produção: <strong>{{ productionCompanies }}</strong></span
+        <span v-for="genre in movie.genres" :key="genre.id"
+          >{{ genre.name }} >Gêneros: <strong>{{ genre }}</strong></span
         >
       </div>
-      <a :href="movie.url" target="_blank">Visite o Site Oficial</a>
+      <RouterLink :to="{ name: 'episodios', params: { id: movieId } }">Assitir Agora</RouterLink>
     </div>
   </div>
   <FooterComponent />
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { getMovieDetails } from '@/api/index'
 import FooterComponent from './FooterComponent.vue'
@@ -38,17 +31,13 @@ const ver = ref(false)
 async function loadMovie() {
   try {
     const response = await getMovieDetails(movieId)
-    movie.value = response.data
+    movie.value = response
+    console.log(response)
     ver.value = true
   } catch (error) {
     console.error('Failed to fetch movie details:', error)
   }
 }
-
-const genres = computed(() => movie.value.genres.map((genre) => genre.name).join(', '))
-const productionCompanies = computed(() =>
-  movie.value.producers.map((producer) => producer.name).join(', ')
-)
 
 loadMovie()
 </script>
@@ -70,8 +59,12 @@ loadMovie()
   height: auto;
 }
 
-.additional-details span {
+.additional-details {
   display: block;
-  margin: 10px 0;
+  margin: 20% 0;
+}
+span {
+  display: block;
+  margin: 10px;
 }
 </style>

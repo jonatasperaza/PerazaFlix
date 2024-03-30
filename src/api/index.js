@@ -13,7 +13,7 @@ async function getMovies() {
   return await response.json()
 }
 async function getMovieDetails(id) {
-  const response = await fetch(`https://api.jikan.moe/v4/anime/${id}/full`, {
+  const response = await fetch(`https://anime-api.peraza.live/anime/gogoanime/info/${id}`, {
     method: 'GET',
     headers: {
       accept: 'application/json'
@@ -22,7 +22,16 @@ async function getMovieDetails(id) {
   return await response.json()
 }
 async function getAnimeList() {
-  const response = await fetch('https://api.jikan.moe/v4/top/anime', {
+  const response = await fetch('https://anime-api.peraza.live/anime/gogoanime/top-airing', {
+    method: 'GET',
+    headers: {
+      accept: 'application/json'
+    }
+  })
+  return await response.json()
+}
+async function searchAnimeList(pesquisa) {
+  const response = await fetch(`https://anime-api.peraza.live/anime/gogoanime/${pesquisa}`, {
     method: 'GET',
     headers: {
       accept: 'application/json'
@@ -31,4 +40,4 @@ async function getAnimeList() {
   return await response.json()
 }
 
-export { getMovies, getMovieDetails, getAnimeList }
+export { getMovies, getMovieDetails, getAnimeList, searchAnimeList }

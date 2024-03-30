@@ -1,5 +1,24 @@
 <script setup>
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import { searchAnimeList } from '@/api/index'
+
+const search = ref('')
+
+const animeList = ref([])
+async function pesquisa() {
+  try {
+    const response = await searchAnimeList(search.value)
+    console.log(search.value)
+    animeList.value = response.results
+    console.log(response.results)
+  } catch (error) {
+    console.error('Failed to fetch anime list:', error)
+  }
+}
+function clear() {
+  animeList.value = []
+}
 </script>
 
 <template>
@@ -14,6 +33,20 @@ import { RouterLink } from 'vue-router'
         <li><RouterLink to="/favoritos">MINHA LISTA</RouterLink></li>
       </ul>
     </nav>
+    <div class="search">
+      <div>
+        <input type="text" v-model="search" /> <button @click="pesquisa()">Pesquisar</button>
+      </div>
+      <div class="results" v-if="animeList[0]">
+        <ul>
+          <button @click="clear()">X</button>
+          <li v-for="anime in animeList" :key="anime.id">
+            <RouterLink :to="`/filme/${anime.id}`">{{ anime.title }}</RouterLink>
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <div>
       <RouterLink to="/user"
         ><img
@@ -33,6 +66,7 @@ header {
   padding: 1rem;
   background-color: #333;
   color: #fff;
+  position: relative;
 }
 
 nav ul {
@@ -48,6 +82,18 @@ nav ul li {
 }
 header > div > a > img {
   border-radius: 50%;
+}
+.search {
+  display: flex;
+  gap: 1rem;
+}
+.results {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  top: 60px;
+  z-index: 1;
 }
 @media screen and (max-width: 768px) {
   header {
