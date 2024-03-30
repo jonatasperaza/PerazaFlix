@@ -9,9 +9,7 @@ const animeList = ref([])
 async function pesquisa() {
   try {
     const response = await searchAnimeList(search.value)
-    console.log(search.value)
     animeList.value = response.results
-    console.log(response.results)
   } catch (error) {
     console.error('Failed to fetch anime list:', error)
   }

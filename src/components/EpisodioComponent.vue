@@ -31,7 +31,6 @@ onMounted(async () => {
   try {
     const response = await getMovieDetails(animeId)
     episodes.value = response
-    console.log(response)
   } catch (error) {
     console.error('Failed to fetch anime episodes:', error)
   }

@@ -25,7 +25,6 @@ onMounted(async () => {
   try {
     const response = await getAnimeList()
     animeList.value = response.results
-    console.log(response.results)
   } catch (error) {
     console.error('Failed to fetch anime list:', error)
   }

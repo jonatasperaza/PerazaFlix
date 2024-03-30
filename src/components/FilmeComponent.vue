@@ -32,7 +32,6 @@ async function loadMovie() {
   try {
     const response = await getMovieDetails(movieId)
     movie.value = response
-    console.log(response)
     ver.value = true
   } catch (error) {
     console.error('Failed to fetch movie details:', error)
