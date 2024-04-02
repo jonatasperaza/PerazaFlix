@@ -11,7 +11,7 @@ export default defineConfig({
     vue(),
     VueDevTools(),
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'autoUpdate', 
       includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
         name: 'PerazaFlix',
