@@ -2,15 +2,31 @@
   margin: 0;
   padding: 0;
   border: 0;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 ::-webkit-scrollbar {
-  display: none;
+  background-color: black;
+  width: 7px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0b36cd;
+  border-radius: 10px;
+  transition: all .6s;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px black;
+  border-radius: 10px;
+  background: #1a1818;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 
 .banner {

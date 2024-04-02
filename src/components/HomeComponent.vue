@@ -2,7 +2,7 @@
   <div class="banner">
     <div class="filmes">
       <router-link
-        :to="`/filme/${anime.id}`"
+        :to="`/episodios/${anime.id}`"
         v-for="anime in animeList"
         :key="anime.mal_id"
         class="movie"
@@ -39,14 +39,14 @@ onMounted(async () => {
   border-radius: 14px;
   width: 20%;
   min-width: 200px;
-  max-width: 300px;
+  max-width: 20vw;
   flex-wrap: wrap;
   backdrop-filter: blur(10px);
 }
 
 .imagem-poster {
   width: 100%;
-  height: 80%;
+  height: 30vw;
   border-radius: 10px;
   object-fit: fill;
 }
@@ -58,13 +58,13 @@ onMounted(async () => {
 }
 
 .movie > h2 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin: 0;
-  padding: 10px;
+  padding: 5px;
 }
 
 .movie > p {
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding: 10px;
 }
 
@@ -72,10 +72,13 @@ onMounted(async () => {
   .movie {
     width: 100%;
   }
+  .movie > h2 {
+    font-size: 1.2rem;
+  }
 
   .imagem-poster {
     width: 100%;
-    height: 80%;
+    height: 70%;
     margin: none;
   }
 }

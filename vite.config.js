@@ -11,22 +11,15 @@ export default defineConfig({
     vue(),
     VueDevTools(),
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'autoUpdate', 
       includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
         name: 'PerazaFlix',
         short_name: 'PerazaFlix',
         description: 'PerazaFlix',
         theme_color: '#ffffff',
-        icons: [
-          {
-            src: 'favicon.png',
-            sizes: '200x200',
-            type: 'image/png',
-            purpose: 'any'
-          }
-        ],
-        id: 'com.fake-store.app',
+        icons: [],
+        id: 'com.perazaflix.app',
         orientation: 'any',
         background_color: '#ffffff',
         start_url: '.',
