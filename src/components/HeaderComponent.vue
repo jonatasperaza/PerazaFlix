@@ -39,15 +39,15 @@ function clear() {
   <header>
     <div class="header--logo">
       <img src="../../public/windows11/LargeTile.scale-100.png" alt="Logo" />
-      <h1>PerazaFlix</h1>
+      <RouterLink to="/"><h1>PerazaFlix</h1></RouterLink>
     </div>
     <nav>
       <ul :class="menuAberto ? 'menu' : ''">
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/series">Series</RouterLink>
-        <RouterLink to="/filmes">Filmes</RouterLink>
-        <RouterLink to="/recente">Recente</RouterLink>
-        <RouterLink to="/favoritos">Favoritos</RouterLink>
+        <RouterLink to="/" class="scale">Home</RouterLink>
+        <RouterLink to="/series" class="scale">Series</RouterLink>
+        <RouterLink to="/filmes" class="scale">Filmes</RouterLink>
+        <RouterLink to="/recente" class="scale">Recente</RouterLink>
+        <RouterLink to="/favoritos" class="scale">Favoritos</RouterLink>
       </ul>
     </nav>
     <div>
@@ -55,7 +55,7 @@ function clear() {
         <input
           class="input-search"
           v-model="search"
-          placeholder="Type your text"
+          placeholder="Pesquise Aqui!"
           required=""
           type="text"
         />
@@ -74,10 +74,10 @@ function clear() {
       </div>
     </div>
     <div class="header--icons">
-      <Magnify class="menu-hamburger" @click="pesquisaAberta = !pesquisaAberta" />
-      <RouterLink to="/user"><Account /></RouterLink>
-      <RouterLink to="/recente"><Recent /></RouterLink>
-      <Menu class="menu-hamburger" @click="menuAberto = !menuAberto" />
+      <Magnify class="menu-hamburger-search scale" @click="pesquisaAberta = !pesquisaAberta" />
+      <RouterLink to="/user" class="scale"><Account /></RouterLink>
+      <RouterLink to="/recente" class="scale"><Recent /></RouterLink>
+      <Menu class="menu-hamburger scale" @click="menuAberto = !menuAberto" />
     </div>
   </header>
 </template>
@@ -119,7 +119,8 @@ nav li {
   display: flex;
   gap: 1rem;
 }
-.menu-hamburger {
+.menu-hamburger,
+.menu-hamburger-search {
   display: none;
 }
 .baner {
@@ -146,11 +147,11 @@ nav li {
   border: none;
   border-bottom: var(--border-height) solid var(--border-before-color);
 }
-.input-search{
+.input-search {
   width: 70%;
   display: flex;
   border-radius: 15px;
-  padding: 5px 10px ;
+  padding: 5px 10px;
 }
 /* styling of animated border */
 .input-border {
@@ -193,24 +194,64 @@ input:focus ~ .input-border {
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
-
 }
-.close-list{
+.close-list {
   background-color: rgba(0, 0, 0, 0);
   position: absolute;
   right: 0;
   top: 0;
   margin: 10px 15px 0 0;
   color: #ffffff;
+  cursor: pointer;
 }
-.anime-name{
+.anime-name {
   color: #ffffff;
 }
-a {
+.scale {
   transition: 0.3s ease-in-out;
 }
-a:hover {
+.scale:hover {
   scale: 1.1;
+}
+@media screen and (max-width: 900px) {
+  .form {
+    display: none;
+  }
+  .search {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgba(66, 66, 66, 0.9);
+    box-shadow:
+      0 10px 20px rgba(255, 255, 255, 0.19),
+      0 6px 6px rgba(75, 69, 69, 0.23);
+    border-radius: 25px;
+    right: 11px;
+    top: 55px;
+    text-align: right;
+    padding: 5px;
+    z-index: 1;
+  }
+  .input-search {
+    width: auto;
+  }
+  .input-search:hover {
+    background-color: #1f1e1e;
+  }
+  .results {
+    right: 2px;
+    top: 80px;
+    font-size: 30px;
+    min-width: var(--width-of-input);
+    max-width: var(--width-of-input);
+    max-height: 50vh;
+    overflow: scroll;
+    z-index: 2;
+  }
+  .menu-hamburger-search {
+    display: block;
+    cursor: pointer;
+  }
 }
 @media (max-width: 768px) {
   nav ul {
@@ -235,47 +276,15 @@ a:hover {
     padding: 10px 16px;
     z-index: 2;
     color: white;
+    top: 55px;
   }
   nav .menu li {
     display: block;
     margin-top: 12px;
   }
-  .search {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    background-color: rgba(66, 66, 66, 0.9);
-    box-shadow:
-      0 10px 20px rgba(255, 255, 255, 0.19),
-      0 6px 6px rgba(75, 69, 69, 0.23);
-    border-radius: 25px;
-    right: 0;
-    top: 50px;
-    text-align: right;
-    padding: 5px;
-    z-index: 1;
-  }
-  .input-search{
-    width: auto;
-  }
-  .input-search:hover{
-    background-color: #1f1e1e;
-  }
-  .results {
-    right: 15px;
-    top: 80px;
-    font-size: 30px;
-    min-width: var(--width-of-input);
-    max-width: var(--width-of-input);
-    max-height: 50vh;
-    overflow: scroll;
-    z-index: 2;
-  }
+
   .anime {
     padding-top: 10px;
-  }
-  .form {
-    display: none;
   }
 }
 </style>
