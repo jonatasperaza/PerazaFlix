@@ -18,6 +18,7 @@ export default defineConfig({
         short_name: 'PerazaFlix',
         description: 'PerazaFlix',
         theme_color: '#ffffff',
+        lang: 'pt-BR',
         icons: [],
         id: 'com.perazaflix.app',
         orientation: 'any',
